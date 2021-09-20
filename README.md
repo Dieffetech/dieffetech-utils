@@ -2,7 +2,7 @@
  Raccolta di utilities per i nostri progetti
 
 _______
-#Array Utils
+# Array Utils
  1. `getArrayForSelect` --> funzione per comporre una query che ritorni dati per le select2
  ```php
     ArrayUtil::getArrayForSelect(
