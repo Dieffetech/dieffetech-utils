@@ -14,7 +14,7 @@ _______
         'name',
         0,
         'name'
-    );
+    ); 
 ```
 2. `transformArrayModelsToSelect` --> Trasforma un array di model che estendono la classe Model in un array per la select2 in base al tipo di select2
      ```php
