@@ -127,14 +127,14 @@ _______
 	//tornerà 0 
   ````
 
-#Console utils
+# Console utils
 
 1. `runCron` --> permette di eseguire un cron, questo può essere utile ad esempio per un invio massivo di email
   ````php
     ConsoleUtil::runCron('cron/revert-student',[$this->userid]);
 	//lancerà il cron revert-student passandogli come parametro l'id dell'utente 
   ````
-#Dates utils
+# Dates utils
 
 1. `getDatesInRange` --> permette di ottenere un array contenente le date entro un certo range
   ````php
