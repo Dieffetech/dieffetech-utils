@@ -1,0 +1,24 @@
+{
+    "name": "kristianlentino/dieffetech-utils",
+    "description": "Utilities",
+    "type": "library",
+    "require": {
+        "php": ">=7.4",
+        "yidas/yii2-bower-asset": "~2.0.5",
+        "yiisoft/yii2": "~2.0.14",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Kristianlentino\\DieffetechUtils\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kristian Lentino",
+            "email": "kristian.lentino@dieffetech.it"
+        }
+    ]
+}
