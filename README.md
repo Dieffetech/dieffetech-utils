@@ -1,6 +1,9 @@
 # dieffetech-utils
- Raccolta di utilities per i nostri progetti
-
+ Raccolta di utilities per i nostri progetti.
+ ##### per installare la libreria e le varie util basta lanciare il seguente comando:
+````php
+composer require kristianlentino/dieffetech-utils
+````
 _______
 # Array Utils
  1. `getArrayForSelect` --> funzione per comporre una query che ritorni dati per le select2
@@ -247,3 +250,16 @@ _______
 
          */
 9. `getNextMonth` --> torna il mese prossimo
+
+# Security Util
+1. `encryptBykey` --> cripta una stringa o numero tramite l'algoritmo openssl_encrypt fornendo una chiave di criptaggio, questo è molto comodo quando in un frontend devi mettere in get un id, invece di metterlo in chiaro meglio criptarlo
+2. `decryptBykey` --> Decripta una stringa o numero tramite l'algoritmo openssl_encrypt e la chiave di criptaggio settata nei params
+# File Util
+1. `deleteDirectory` --> elimina una cartella e tutti i file al suo interno
+# Geolocation Util
+1. `getCoordinates` --> dato un indirizzo nel formato via,civico,città (esempio Via rossi 83, Pavia) fa una chiamata alle api di google maps e torna la latituidine e la longitudine del posto, se esiste
+# Google recaptcha Util
+1. `validateCaptcha` -->  controlla che il captcha google (v3) inviato dal form sia valido
+````php
+   $captcha = GoogleRecaptcha::validateCaptcha(\Yii::$app->params["GOOGLE_CAPTCHA"]["SECRET"]);
+
