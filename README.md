@@ -31,7 +31,7 @@ _______
                 'surname' => 'Lentino'
             ]    
         ];
-        $messages = ArrayUtil::array_flatten($arrayErrors['message'], false);
+        $messages = ArrayUtil::array_flatten($arrayErrors, false);
       
         //il risultato di questa operazione é :
         Array
