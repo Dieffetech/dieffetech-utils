@@ -262,4 +262,13 @@ _______
 1. `validateCaptcha` -->  controlla che il captcha google (v3) inviato dal form sia valido
 ````php
    $captcha = GoogleRecaptcha::validateCaptcha(\Yii::$app->params["GOOGLE_CAPTCHA"]["SECRET"]);
+````
 
+# Image Utils
+ 1. `calculateAspectRatio` --> funzione calcolare l'aspect ratio (16/9  ecc..) di un'immagine date delle dimensioni 
+ ```php
+    /* torna 1.7777777777778 che sarebbe l'equivalente di dire 16/9 */
+    ImageUtil::calculateAspectRatio(1920,1080);
+    /* Per tornare la stringa 16:9 basta passare un terzo parametro a true come segue */
+    ImageUtil::calculateAspectRatio(1920,1080,true);
+```
