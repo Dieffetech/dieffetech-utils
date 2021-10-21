@@ -280,14 +280,19 @@ _______
     [['born_date','establishment_date'],'match','pattern' => RegexUtil::REGEX_VALID_DATE,'on' => self::SCENARIO_FORM],
     //Validazione link inserite correttamente
     [['website'],'match','pattern' => RegexUtil::REGEX_VALID_URL],
-    //Validazione telefono inserite correttamente
-    [['telephone'],'match','pattern' => RegexUtil::REGEX_VALID_PHONE],
 ```
 # Fiscal code validator
- Validator Yii2 per effettuare controlli di corretteza dei dati inseriti nel codice fiscale
+ Validator Yii2 per effettuare controlli di correttezza dei dati inseriti nel codice fiscale
  ```php
     //Validazione codice fiscale
     [['fiscal_code'],FiscalCodeValidator::className(),'when' => function($model){
 				return $model->nationidfk == JobNation::ITALY_ID;
    },'on' => self::SCENARIO_VALIDATE],
+```
+
+# telephone validator
+ Validator Yii2 per effettuare controlli di correttezza dei dati inseriti nel numero di telefono
+ ```php
+    //Validazione telefono
+    [['telephone'],TelephoneValidator::class],
 ```
