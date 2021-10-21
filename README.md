@@ -272,3 +272,22 @@ _______
     /* Per tornare la stringa 16:9 basta passare un terzo parametro a true come segue */
     ImageUtil::calculateAspectRatio(1920,1080,true);
 ```
+
+# Regex Util
+ Raccolta di regex util per validazioni dei campi nelle rules di yii
+ ```php
+    //Validazione date inserite correttamente nel formato italiano
+    [['born_date','establishment_date'],'match','pattern' => RegexUtil::REGEX_VALID_DATE,'on' => self::SCENARIO_FORM],
+    //Validazione link inserite correttamente
+    [['website'],'match','pattern' => RegexUtil::REGEX_VALID_URL],
+    //Validazione telefono inserite correttamente
+    [['telephone'],'match','pattern' => RegexUtil::REGEX_VALID_PHONE],
+```
+# Fiscal code validator
+ Validator Yii2 per effettuare controlli di corretteza dei dati inseriti nel codice fiscale
+ ```php
+    //Validazione codice fiscale
+    [['fiscal_code'],FiscalCodeValidator::className(),'when' => function($model){
+				return $model->nationidfk == JobNation::ITALY_ID;
+   },'on' => self::SCENARIO_VALIDATE],
+```
