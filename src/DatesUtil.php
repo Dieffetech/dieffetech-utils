@@ -4,9 +4,23 @@
 namespace Kristianlentino\DieffetechUtils;
 
 use yii\base\Exception;
+use yii\base\InvalidArgumentException;
+use yii\validators\DateValidator;
 
 class DatesUtil
 {
+
+	/**
+	 * @param $date
+	 * @param string $format
+	 * @return bool
+	 * check if a given date in a given format is valid
+	 */
+	public static function validateDate($date, $format = 'Y-m-d'): bool
+	{
+		$d = \DateTime::createFromFormat($format,$date);
+		return !empty($d) && $d->format($format) === $date;
+	}
 	/**
 	 * @param string $dateFromString
 	 * @param string|null $dateToString
@@ -16,8 +30,21 @@ class DatesUtil
 	 * @return array
 	 * @throws \Exception
 	 */
-	public static function getDatesInRange(string $dateFromString, string $dateToString=null,string $format='Y-m-d')
+	public static function getDatesInRange(?string $dateFromString = null, ?string $dateToString=null,string $format='Y-m-d')
 	{
+
+
+		if(empty($dateFromString)){
+			$dateFromString = date('Y-m-d');
+		}
+
+		if(!self::validateDate($dateFromString)){
+			throw new InvalidArgumentException("dateFromString not valid: $dateFromString");
+		}
+		if(!self::validateDate($dateToString)){
+			throw new InvalidArgumentException("dateToString not valid: $dateToString");
+		}
+
 		$dateFromString= self::convertDateToSql($dateFromString);
 		if(!empty($dateToString)){
 			$dateToString= self::convertDateToSql($dateToString);
@@ -54,6 +81,26 @@ class DatesUtil
 
 		if(empty($date)){
 			return "";
+		}
+
+		if(!self::validateDate($date,'Y-m-d')){
+
+			if(
+				!(RegexUtil::matchItaliandate($date) || RegexUtil::matchAmericandate($date))
+			){
+
+				$date = false;
+			} else {
+
+				if(RegexUtil::matchItalianDate($date)){
+					return $date;
+				};
+				$date = self::convertToFormat($date,'Y-m-d');
+			}
+
+			if($date === false){
+				return false;
+			}
 		}
 
 		return date("d/m/Y",strtotime($date));
@@ -124,7 +171,7 @@ class DatesUtil
 	 * @param array $params
 	 * @return false|string
 	 */
-	public static function addRemoveToDate(string $date = null , string $format= 'Y-m-d', array $params)
+	public static function addRemoveToDate(array $params,string $date = null , string $format= 'Y-m-d')
 	{
 		if(empty($date)){
 
@@ -186,5 +233,24 @@ class DatesUtil
 	public static function getNextMonth()
 	{
 		return date('m',strtotime('first day of +1 month'));
+	}
+
+	/**
+	 * @param $date
+	 * @param string $format
+	 * @return string
+	 * @throws InvalidArgumentException
+	 * Cast a date in a specific date format
+	 */
+	private static function convertToFormat($date, string $format): string
+	{
+
+		try {
+			$date = new \DateTime($date);
+		} catch (\Exception $e) {
+			return false;
+		}
+
+		return $date->format($format);
 	}
 }

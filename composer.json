@@ -18,5 +18,8 @@
             "name": "Kristian Lentino",
             "email": "kristian.lentino@dieffetech.it"
         }
-    ]
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
 }
