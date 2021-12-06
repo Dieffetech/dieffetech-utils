@@ -1,7 +1,5 @@
 <?php
-
-namespace app\util;
-
+namespace Kristianlentino\DieffetechUtils;
 class FiscalCodeValidator extends \yii\validators\Validator
 {
 	// Espressione regolare per il controllo formale del codice fiscale
