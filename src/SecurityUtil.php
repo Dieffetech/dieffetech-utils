@@ -6,7 +6,17 @@ use yii\base\Exception;
 
 class SecurityUtil
 {
+	public static function createHash(string $password):string
+	{
+		$hash = Yii::$app->getSecurity()->generatePasswordHash($password);
 
+		return $hash;
+	}
+
+	public static function validatePassword(string $password,string $hashedPassword)
+	{
+		return Yii::$app->getSecurity()->validatePassword($password, $hashedPassword);
+	}
 	public static function encryptByKey(string $stringToEncrypt)
 	{
 		if(empty(\Yii::$app->params['SECURE_TOKEN'])){
