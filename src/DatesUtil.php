@@ -85,22 +85,10 @@ class DatesUtil
 
 		if(!self::validateDate($date,'Y-m-d')){
 
-			if(
-				!(RegexUtil::matchItaliandate($date) || RegexUtil::matchAmericandate($date))
-			){
-
-				$date = false;
-			} else {
-
-				if(RegexUtil::matchItalianDate($date)){
-					return $date;
-				};
-				$date = self::convertToFormat($date,'Y-m-d');
+			if(RegexUtil::matchItalianDate($date)){
+				return $date;
 			}
-
-			if($date === false){
-				return false;
-			}
+			$date = self::convertToFormat($date,'Y-m-d');
 		}
 
 		return date("d/m/Y",strtotime($date));
